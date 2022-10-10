@@ -1,0 +1,107 @@
+from State import State
+
+# stf = [
+#     State(0, 'ws', 0, initial=True), State(0, 'eol', 0, initial=True),
+#     State(0, 'Underscore', 1), State(0, 'Letter', 1), State(1, 'Letter', 1), State(1, 'Underscore', 1), State(1, 'Digit', 1), State(1, 'other', 2, final=True),
+#     State(0, ')', 3, final=True), State(0, '(', 3, final=True), State(0, '/', 3, final=True),
+#     State(0, '!', 4),  State(4, '=', 5, final=True),
+#     State(0, '=', 6, final=True),  State(6, '=', 5, final=True),
+#     State(0, '>', 7, final=True),  State(7, '>', 5), State(7, '=', 5, final=True),
+#     State(0, '<', 8, final=True),  State(8, '<', 5), State(8, '=', 5, final=True),
+#     State(0, 'bool_const', 9), State(9, 'other', 10, final=True),
+# ]
+
+# stf = [
+#     State(0, 'ws', 0, initial=True), State(0, 'eol', 0, initial=True),
+#     State(0, 'Underscore', 1, final=True), State(0, 'Letter', 1, final=True), State(1, 'Letter', 1, final=True), State(1, 'Underscore', 1, final=True), State(1, 'Digit', 1, final=True), State(1, 'other', 2, final=True),
+#     State(0, ')', 3, final=True), State(0, '(', 3, final=True), State(0, '/', 3, final=True),
+#     State(0, '!', 4),  State(4, '=', 5, final=True),
+#     State(0, '=', 6, final=True),  State(6, '=', 5, final=True),
+#     State(0, '>', 7, final=True),  State(7, '>', 5, final=True), State(7, '=', 5, final=True),
+#     State(0, '<', 8, final=True),  State(8, '<', 5, final=True), State(8, '=', 5, final=True),
+#     State(0, 'bool', 9, final=True), State(9, 'other', 10, final=True),
+# ]
+
+stf = [
+    State(0, 'ws', 0, initial=True),
+    State(0, 'eol', 0, initial=True),
+    State(0, 'Underscore', 1, final=True), State(0, 'Letter', 1, final=True), State(1, 'Letter', 1, final=True), State(1, 'Underscore', 1, final=True), State(1, 'Digit', 1, final=True), State(1, ':', 21, final=True),
+    State(0, ')', 3, final=True), State(0, '(', 3, final=True), State(0, '/', 3, final=True),
+    State(0, '!', 4),  State(4, '=', 5, final=True),
+    State(0, '=', 6, final=True),  State(6, '=', 5, final=True),
+    State(0, '>', 7, final=True),  State(7, '>', 5, final=True), State(7, '=', 5, final=True),
+    State(0, '<', 8, final=True),  State(8, '<', 5, final=True), State(8, '=', 5, final=True),
+    State(0, 'bool', 9, final=True), State(9, 'other', 10, final=True),
+    State(0, '*', 11, final=True), State(11, '*', 12, final=True),
+    State(0, 'dot', 13), State(13, 'Digit', 13, final=True),
+    State(0, '-', 15, final=True), State(0, '+', 15, final=True), State(15, 'dot', 16), State(16, 'Digit', 17, final=True), State(17, 'Digit', 17, final=True),
+    State(0, 'Digit', 18, final=True), State(18, 'Digit', 18, final=True), State(15, 'Digit', 18, final=True), State(18, 'dot', 19, final=True), State(19, 'Digit', 19, final=True),
+]
+
+tokens = {
+    'program': 'keyword',
+    'if': 'keyword',
+    'goto': 'keyword',
+    'for': 'keyword',
+    'while': 'keyword',
+    'rof': 'keyword',
+    'scan': 'keyword',
+    'print': 'keyword',
+    'int': 'keyword',
+    'real': 'keyword',
+    'bool': 'keyword',
+    'true': 'bool',
+    'false': 'bool',
+    '=': 'assign_op',
+    '.': 'dot',
+    ':': 'colon',
+    ' ': 'ws',
+    '\t': 'ws',
+    '\n': 'eol',
+    '-': 'add_op',
+    '+': 'add_op',
+    '*': 'mult_op',
+    '/': 'mult_op',
+    '**': 'pow_op',
+    '(': 'par_op',
+    ')': 'par_op',
+    '>': 'rel_op',
+    '>=': 'rel_op',
+    '<': 'rel_op',
+    '<=': 'rel_op',
+    '==': 'rel_op',
+    '!=': 'rel_op',
+    '>>': 'block',
+    '<<': 'block',
+}
+
+other = {
+    1: 'ident',
+    9: 'bool',
+    13: 'real',
+    17: 'real',
+    19: 'real',
+    18: 'int',
+    21: 'label'
+}
+
+classes = {
+    '.': 'dot',
+    'abcdefghijklmnopqrstuvwxyz': 'Letter',
+    '_': 'Underscore',
+    '0123456789': 'Digit',
+    ' ': 'ws',
+    '\t': 'ws',
+    '\n': 'eol',
+    ':': ':',
+    '+': '+',
+    '-': '-',
+    '/': '/',
+    '*': '*',
+    '(': '(',
+    ')': ')',
+    '>': '>',
+    '<': '<',
+    '=': '=',
+    '!': '!',
+}

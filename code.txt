@@ -1,0 +1,27 @@
+program counter
+
+int n i
+real x
+bool b
+
+>>
+    scan (n)
+    for i = 1 to n by 0.5
+    while (x < 100) do
+>>
+    scan (x)
+    b = x >= 0
+    print(i x b)
+    >>
+    if i>1 goto label
+
+    label:
+    >>
+        b = 1==1
+        b = 1!=1
+        b = 1<=1
+        x = -x ** 3 / (7 + 4 - 5)
+        i = +i
+        print (b x i)
+    >>
+>>
